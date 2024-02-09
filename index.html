@@ -3,27 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        #calculator {
+            background-color: #1a73e8;
+            border-radius: 5px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 300px;
+        }
+        #result {
+            grid-column: span 4;
+            height: 50px;
+            text-align: right;
+            padding: 10px;
+            background-color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.5em;
+        }
+        .button {
+            background-color: #4285f4;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.5em;
+            color: white;
+            padding: 10px 0;
+        }
+        .button:active {
+            background-color: #0b5ed7;
+        }
+        .operation {
+            background-color: #4a90e2;
+        }
+        .equal {
+            grid-column: span 2;
+            background-color: #34a853;
+        }
+    </style>
 </head>
 <body>
-    <section>
-        <h2>Arithmetic</h2>
-        <input id="operand1"/>
-        <label>+</label>
-        <input id="operand2"/>
-        <button onclick="add()">=</button>
-        <label id="sum"></label>
-    </section>
+    <div id="calculator">
+        <input type="text" id="result" disabled>
+        <button class="button" onclick="clearResult()">C</button>
+        <button class="button operation">/</button>
+        <button class="button operation">*</button>
+        <button class="button">7</button>
+        <button class="button">8</button>
+        <button class="button">9</button>
+        <button class="button operation">-</button>
+        <button class="button">4</button>
+        <button class="button">5</button>
+        <button class="button">6</button>
+        <button class="button operation">+</button>
+        <button class="button">1</button>
+        <button class="button">2</button>
+        <button class="button">3</button>
+        <button class="button equal" onclick="calculate()">=</button>
+        <button class="button">0</button>
+        <button class="button">.</button>
+    </div>
     <script>
-        async function add() {
-            let operand1Input = document.getElementById("operand1");
-            let operand2Input = document.getElementById("operand2");
-            let n = operand1Input.value;
-            let m = operand2Input.value;
-            const response = await fetch("https://arithmetic-service-tariqnb.onrender.com//add/"+n+ "/" + m);
-            const sum = await response.json();
-            document.getElementById("sum").innerText = sum;
+        let result = document.getElementById("result");
+        function clearResult() {
+            result.value = "";
         }
+        document.querySelectorAll('#calculator .button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (!this.classList.contains('operation') && !this.classList.contains('equal')) {
+                    result.value += this.innerText;
+                }
+            });
+        });
+        function calculate() {
+            try {
+                result.value = eval(result.value);
+            } catch {
+                result.value = "Error";
+            }
+        }
+        document.querySelectorAll('.operation').forEach(button => {
+            button.addEventListener('click', function() {
+                if (result.value != "" && !isNaN(result.value.slice(-1))) {
+                    result.value += ` ${this.innerText} `;
+                }
+            });
+        });
     </script>
 </body>
 </html>
