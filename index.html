@@ -28,9 +28,10 @@
             text-align: right;
             padding: 10px;
             background-color: white;
-            border: none;
+            border: solid 2px #1a73e8;
             border-radius: 5px;
             font-size: 1.5em;
+            margin-bottom: 10px; /* Add margin to separate from buttons */
         }
         .button {
             background-color: #4285f4;
@@ -38,40 +39,61 @@
             border-radius: 5px;
             font-size: 1.5em;
             color: white;
-            padding: 10px 0;
+            padding: 10px 0; /* Increase padding for larger buttons */
         }
         .button:active {
             background-color: #0b5ed7;
         }
-        .operation {
-            background-color: #4a90e2;
+        .operation, .clear {
+            background-color: #ffffff; /* Change operation buttons to white */
+            color: #1a73e8; /* Change text color for better visibility */
         }
         .equal {
             grid-column: span 2;
             background-color: #34a853;
+            height: 100%; /* Make the button taller */
         }
+        /* Adjust grid layout for operation buttons */
+        .clear { grid-column: 4; }
+        .divide { grid-row: 2; grid-column: 4; }
+        .multiply { grid-row: 3; grid-column: 4; }
+        .subtract { grid-row: 4; grid-column: 4; }
+        .add { grid-row: 2; grid-column: 4; }
+
+        /* Make the equals button cover rows from 5 to 6 */
+        .equal { grid-row: 5 / 7; }
+
+        /* Remove the span from the equal button */
+        .equal { grid-column: unset; }
     </style>
 </head>
 <body>
     <div id="calculator">
         <input type="text" id="result" disabled>
-        <button class="button" onclick="clearResult()">C</button>
-        <button class="button operation">/</button>
-        <button class="button operation">*</button>
         <button class="button">7</button>
         <button class="button">8</button>
         <button class="button">9</button>
-        <button class="button operation">-</button>
-        <button class="button">4</button>
-        <button class="button">5</button>
-        <button class="button">6</button>
-        <button class="button operation">+</button>
         <button class="button">1</button>
         <button class="button">2</button>
         <button class="button">3</button>
-        <button class="button equal" onclick="calculate()">=</button>
+        <button class="button">4</button>
+        <button class="button">5</button>
+        <button class="button">6</button>
+         
         <button class="button">0</button>
         <button class="button">.</button>
+        <button class="button clear" onclick="clearResult()">C</button>
+        
+       
+        <button class="button operation divide">/</button>
+        
+        
+        <button class="button operation multiply">*</button>
+       
+        <button class="button operation subtract">-</button>
+        <button class="button operation add">+</button>
+        
+        <button class="button equal" onclick="calculate()">=</button>
     </div>
     <script>
         let result = document.getElementById("result");
@@ -80,7 +102,7 @@
         }
         document.querySelectorAll('#calculator .button').forEach(button => {
             button.addEventListener('click', function() {
-                if (!this.classList.contains('operation') && !this.classList.contains('equal')) {
+                if (!this.classList.contains('operation') && !this.classList.contains('equal') && !this.classList.contains('clear')) {
                     result.value += this.innerText;
                 }
             });
