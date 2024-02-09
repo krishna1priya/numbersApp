@@ -31,7 +31,7 @@
             border: solid 2px #1a73e8;
             border-radius: 5px;
             font-size: 1.5em;
-            margin-bottom: 10px; /* Add margin to separate from buttons */
+            margin-bottom: 10px; 
         }
         .button {
             background-color: #4285f4;
@@ -39,31 +39,26 @@
             border-radius: 5px;
             font-size: 1.5em;
             color: white;
-            padding: 10px 0; /* Increase padding for larger buttons */
+            padding: 10px 0;
         }
         .button:active {
             background-color: #0b5ed7;
         }
         .operation, .clear {
-            background-color: #ffffff; /* Change operation buttons to white */
-            color: #1a73e8; /* Change text color for better visibility */
+            background-color: #ffffff; 
+            color: #1a73e8; 
         }
         .equal {
             grid-column: span 2;
             background-color: #34a853;
-            height: 100%; /* Make the button taller */
+            height: 100%; 
         }
-        /* Adjust grid layout for operation buttons */
         .clear { grid-column: 4; }
         .divide { grid-row: 2; grid-column: 4; }
         .multiply { grid-row: 3; grid-column: 4; }
         .subtract { grid-row: 4; grid-column: 4; }
         .add { grid-row: 2; grid-column: 4; }
-
-        /* Make the equals button cover rows from 5 to 6 */
         .equal { grid-row: 5 / 7; }
-
-        /* Remove the span from the equal button */
         .equal { grid-column: unset; }
     </style>
 </head>
@@ -79,20 +74,13 @@
         <button class="button">4</button>
         <button class="button">5</button>
         <button class="button">6</button>
-         
         <button class="button">0</button>
         <button class="button">.</button>
         <button class="button clear" onclick="clearResult()">C</button>
-        
-       
         <button class="button operation divide">/</button>
-        
-        
         <button class="button operation multiply">*</button>
-       
         <button class="button operation subtract">-</button>
         <button class="button operation add">+</button>
-        
         <button class="button equal" onclick="calculate()">=</button>
     </div>
     <script>
