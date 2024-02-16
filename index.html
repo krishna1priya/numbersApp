@@ -111,8 +111,9 @@
         fetch(`https://arithmetic-service-1sj0.onrender.com/${operation}/${n}/${m}`)
             .then(response => response.json())
             .then(data => {
-                result.value = data.calculationResult;
-            })
+    console.log(data); 
+    result.value = data.calculationResult;
+})
             .catch(error => {
                 console.error('Error:', error);
                 result.value = "Error";
