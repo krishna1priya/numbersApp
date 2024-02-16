@@ -108,7 +108,7 @@
     if (match) {
         const [, n, , operator, m] = match;
         const operation = operationMap[operator.trim()];
-        fetch(`http://localhost:3000/${operation}/${n}/${m}`)
+        fetch(`https://arithmetic-service-1sj0.onrender.com/${operation}/${n}/${m}`)
             .then(response => response.json())
             .then(data => {
                 result.value = data.calculationResult;
