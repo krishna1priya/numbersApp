@@ -109,11 +109,16 @@
         const [, n, , operator, m] = match;
         const operation = operationMap[operator.trim()];
         fetch(`https://arithmetic-service-1sj0.onrender.com/${operation}/${n}/${m}`)
-            .then(response => response.json())
-            .then(data => {
-    console.log(data); 
-    result.value = data.calculationResult;
-})
+        .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data); 
+        result.value = data.calculationResult ? data.calculationResult : "Invalid response format";
+    })
             .catch(error => {
                 console.error('Error:', error);
                 result.value = "Error";
