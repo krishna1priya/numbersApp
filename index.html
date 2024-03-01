@@ -84,6 +84,24 @@
         <button class="button operation add">+</button>
         <button class="button equal" onclick="calculate()">=</button>
     </div>
+    <div class="column">
+        <section>
+            <h2>Prime check</h2>                
+            <label>Number to test:</label>
+            <input id="numberToTest"/>
+            <button onclick="isPrime()">Check</button>
+            <label id="primeCheckResult"></label>  
+        </section>           
+    </div>    
+    <div class="column">
+        <section>
+            <h2>Ciphers</h2>                
+            <label>Find cipher :</label>
+            <input id="numberToTest"/>
+            <button onclick="isPrime()">Check</button>
+            <label id="primeCheckResult"></label>  
+        </section>           
+    </div>     
     <script>
         let result = document.getElementById("result");
         function clearResult() {
@@ -134,6 +152,21 @@
                 }
             });
         });
+
+        async function isPrime() {
+            const numberToTest = document.getElementById("numberToTest");            
+            let n = numberToTest.value;            
+            const response = await fetch("???" + n);
+            const result = await response.json();
+            document.getElementById("primeCheckResult").innerText = result;
+        }
+        async function Ciphers() {
+            const numberToTest = document.getElementById("numberToTest");            
+            let n = numberToTest.value;            
+            const response = await fetch("???" + n);
+            const result = await response.json();
+            document.getElementById("Caesar Cipher").innerText = result;
+        }
     </script>
 </body>
 </html>
